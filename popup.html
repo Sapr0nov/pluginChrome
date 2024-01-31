@@ -1,32 +1,18 @@
 <!DOCTYPE html>
-<html lang="ru">
+<style>
+h4 {
+text-wrap: nowrap;
+}
+</style>
+<html>
   <head>
-  	<meta charset="UTF-8">
-    <style type="text/css">
-    	/* задаём размеры кнопки и размер текста на кнопке  */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background-color: lightgrey;
-        }
-        button {
-	      font-size: 12px;
-		  height: 40px;
-		  width: 80px;
-		}
-        #timeLimit {
-            text-align: center;
-            width: 80px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Personal Style</title>
   </head>
   <body>
-    <input type="text" id="timeLimit" value="30"/>
-  	<!-- создаём кнопку на странице -->
-    <button id="start">Проверить время</button>
-    <!-- подключаем скрипт, который обработает нажатие на эту кнопку -->
+    <h4>use Custom CSS</h4>
+    <button id="apply-button">Применить</button>
+
     <script src="popup.js"></script>
   </body>
 </html>
