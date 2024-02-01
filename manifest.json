@@ -6,7 +6,7 @@
   "host_permissions": [
     "*://*.yandex.ru/*"
   ],
-  "permissions": ["scripting", "activeTab"],
+  "permissions": ["scripting", "activeTab", "storage"],
   "background": {
     "service_worker": "background.js"
   },
