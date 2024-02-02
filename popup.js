@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('apply-button').addEventListener('click', loadCSS);
     document.getElementById('save-button').addEventListener('click', saveCSS);
+    document.getElementById('css-textarea').addEventListener('input', paintCSS);
+    document.getElementById('css-textarea').addEventListener('keydown', paintCSS);
+    document.getElementById('css-textarea').addEventListener('scroll', syncScroll);
 });
 
 const cssStringDefault = `
@@ -46,7 +49,7 @@ async function loadCSS() {
 
 async function saveCSS() {
     const domain = await getDomain();
-//    const cssString = document.getElementById('css-field').value;
+//    const cssString = document.getElementById('css-textarea').value;
     const cssString = cssStringDefault;
     setCSS(domain, cssString);
 }
@@ -116,3 +119,26 @@ async function getDomain() {
 function getKey(domain) {
     return 'css_' + domain.replace(/[^\w]/g, "");
 }
+
+
+function paintCSS() {
+    textarea = document.getElementById('css-textarea');
+    overlay = document.getElementById('overlay');
+    let code = textarea.value;
+    code = code.replace(/\n/g, '<br />');
+    code = code.replace(/\/\*([\s\S]*?)\*\//g, '<span class="comment">/*$1*/</span>');
+    code = code.replace(/(\/\*[\s\S]*?\*\/|\/\/.*?(\r?\n|$))/g, '<span class="comment">$1</span>');
+    code = code.replace(/([{}])/g, '<span class="highlight">$1</span>');
+    code = code.replace(/(\.[\w-]+)/g, '<span class="selector">$1</span>');
+    code = code.replace(/([\w-]+)(\s*:)/g, '<span class="property">$1</span>$2');
+    code = code.replace(/(:\s*)([^;\n]+)(;)/g, '$1<span class="value">$2</span>$3');
+    overlay.innerHTML = code;
+}
+
+function syncScroll(e) {
+    overlay = document.getElementById('overlay');
+    var scrollTop = e.target.scrollTop;
+    var scrollLeft = e.target.scrollLeft;
+    overlay.scrollTop = scrollTop;
+    overlay.scrollLeft = scrollLeft;
+  }

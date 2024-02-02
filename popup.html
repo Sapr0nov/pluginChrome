@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<style>
-h4 {
-text-wrap: nowrap;
-}
-ul {
-  list-style: none;
-}
-li > button {
-  width: 120px;
-}
-</style>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Personal Style</title>
-  </head>
-  <body>
-    <h4>use Custom CSS</h4>
-    <ul>
-      <li><button id="apply-button">Применить</button></li>
-      <li><button id="save-button">Сохранить</button></li>
-    </ul>
-    <script src="popup.js"></script>
-  </body>
+<head>  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css" type="text/css">
+</head>
+<body class="dark">
+<div class="container">
+  <h1>Свой стиль CSS</h1>
+  <ul>
+    <li><button class="button" id="apply-button">Применить</button></li>
+    <li><button class="button" id="save-button">Сохранить</button></li>
+  </ul>
+  <div class="input-container">
+    <textarea type="text" id="css-textarea" placeholder="Введите стиль"></textarea>
+    <div id="overlay"></div>
+  </div>
+</div>
+<script src="popup.js"></script>
+</body>
 </html>
