@@ -1,9 +1,15 @@
+import { CustomCSS } from './classes/CustomCSS.js';
+import { TextAreaPainter } from './classes/TextAreaPainter.js';
+
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('apply-button').addEventListener('click', loadCSS);
-    document.getElementById('save-button').addEventListener('click', saveCSS);
-    document.getElementById('css-textarea').addEventListener('input', paintCSS);
-    document.getElementById('css-textarea').addEventListener('keydown', paintCSS);
-    document.getElementById('css-textarea').addEventListener('scroll', syncScroll);
+    const customCSS = new CustomCSS(document.getElementById('css-textarea'));
+    const textAreaPainter = new TextAreaPainter();
+
+    document.getElementById('apply-button').addEventListener('click', customCSS.loadCSS);
+    document.getElementById('save-button').addEventListener('click', customCSS.saveCSS);
+    document.getElementById('css-textarea').addEventListener('input', textAreaPainter.paintCSS);
+    document.getElementById('css-textarea').addEventListener('keydown', textAreaPainter.paintCSS);
+    document.getElementById('css-textarea').addEventListener('scroll', textAreaPainter.syncScroll);
 });
 
 const cssStringDefault = `
